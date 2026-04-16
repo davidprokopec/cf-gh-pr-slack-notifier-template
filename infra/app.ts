@@ -29,11 +29,10 @@ new sst.cloudflare.Worker("GithubSlackNotifier", {
         },
       ])
 
-      args.migrations = $resolve(args.migrations ?? {}).apply((migrations) => ({
-        ...migrations,
-        oldTag: "v1",
+      args.migrations = {
         newTag: "v1",
-      }))
+        newSqliteClasses: ["PrState"],
+      }
 
       args.observability = $resolve(args.observability ?? {}).apply((observability) => ({
         ...observability,
